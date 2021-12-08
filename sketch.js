@@ -12,20 +12,18 @@ function preload(){
   ghostImg = loadImage("ghost-standing.png");
   spookySound = loadSound("spooky.wav");
 
-  
 }
 
 function setup() {
   createCanvas(600, 600);
   tower = createSprite(300,300);
   tower.addImage("tower",towerImg);
-  tower.velocityY = 1;
+  tower.velocityY = 10;
 
   ghost = createSprite(300,300);
   ghost.addImage(ghostImg);
-  ghost.scale = 0.4;
+  ghost.scale = 0.5;
 
-  
 doorsGroup = new Group();
 climbersGroup = new Group();
 invisibleBlockGroup = new Group();
@@ -35,28 +33,18 @@ function draw() {
   background(200);
 
   if(gameState === "play"){
-    
-  
-  
+
   if(tower.y > 400){
       tower.y = 300
     }
-
-   
-
     if(keyDown("RIGHT_ARROW")){
       ghost.x = ghost.x+3;
-
     }
-
     if(keyDown("LEFT_ARROW")){
       ghost.x = ghost.x-3;
-
     }
-
     if(keyDown("space")){
-      ghost.velocityY = -4;
-
+      ghost.velocityY = -5;
     }
     ghost.velocityY = ghost.velocityY+0.7;
     if(climbersGroup.isTouching(ghost)){
@@ -68,22 +56,14 @@ function draw() {
       gameState = "end";
 
     }
-
-
     spawnDoors();
-
     drawSprites();
   }
   if(gameState === "end"){
     textSize(20);
-    text("GAME OVER",300,300);
-
-
-    
+    text("GAME OVER (Press Ctrl/Command + R or Shift + F5 To restart)",20,300);
   }
-
-
-}
+}invisibleBlock
 
 
 
@@ -114,12 +94,10 @@ invisibleBlock = createSprite(300,230);
 invisibleBlock.width = climber.width;
 invisibleBlock.height = climber.height;
 invisibleBlock.x = climber.x;
-invisibleBlock.velocityY = 1
+invisibleBlock.velocityY = 1;
 invisibleBlockGroup.add(invisibleBlock);
 invisibleBlock.visible = false;
-
-
-
+invisibleBlock.scale = 0.7
 }
 }
 
